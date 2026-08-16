@@ -152,7 +152,7 @@
           rgba(8, 8, 8, 0.92) 48%,
           rgba(8, 8, 8, 0.45) 68%,
           rgba(8, 8, 8, 0.05) 100%),
-        url("../images/atul-hero.png") right center / cover no-repeat;
+        url("banner.png") right center / cover no-repeat;
 
       background-color: #080808;
     }
@@ -800,6 +800,23 @@
     #heroDesc,
     #heroCta {
       max-width: 650px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 720px;
+
+        background:
+          linear-gradient(180deg,
+            rgba(8, 8, 8, 0.90) 0%,
+            rgba(8, 8, 8, 0.72) 45%,
+            rgba(8, 8, 8, 0.96) 100%),
+          url("banner.png") 68% center / cover no-repeat;
+      }
+
+      .hero .wrap {
+        padding: 80px 24px;
+      }
     }
   </style>
 </head>
