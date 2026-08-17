@@ -9,7 +9,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -94,11 +98,80 @@
     </div>
   </section>
 
+
+  <section class="wicb-section">
+    <div class="wicb-header">
+      <h2 class="wicb-title">
+        what-i-can-build
+      </h2>
+      <p class="wicb-sub">Seven kinds of projects I build end to end — from Laravel apps to full LMS platforms.</p>
+    </div>
+
+    <div class="wicb-carousel-wrap">
+      <div class="wicb-viewport" id="wicbViewport">
+        <div class="wicb-track" id="wicbTrack">
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">Business Websites</h3>
+            <p class="wicb-card-desc">Professional, responsive websites for businesses and organizations.</p>
+          </div>
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">Custom Web Applications</h3>
+            <p class="wicb-card-desc">Laravel-based applications tailored to specific business workflows.</p>
+          </div>
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">Admin Panels & Dashboards</h3>
+            <p class="wicb-card-desc">Secure dashboards for managing users, content, reports, and operations.</p>
+          </div>
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">CMS & No-Code Platforms</h3>
+            <p class="wicb-card-desc">Flexible systems that let users create and manage websites without coding.</p>
+          </div>
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">Education & LMS Platforms</h3>
+            <p class="wicb-card-desc">Course management, student dashboards, classes, payments, and learning systems.
+            </p>
+          </div>
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">Payment & API Integration</h3>
+            <p class="wicb-card-desc">Razorpay, Stripe, third-party APIs, email services, and more.</p>
+          </div>
+
+          <div class="wicb-card">
+            <h3 class="wicb-card-title">Maintenance & Bug Fixing</h3>
+            <p class="wicb-card-desc">Performance improvements, debugging, testing, and ongoing support.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="wicb-controls">
+        <button class="wicb-arrow" id="wicbPrev" aria-label="Previous card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="wicb-arrow" id="wicbNext" aria-label="Next card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <section id="experience">
     <div class="wrap">
       <div class="section-head reveal-up">
         <div class="eyebrow">02 / changelog</div>
-        <h2>Career, versioned</h2>
+        <h2>Career</h2>
       </div>
       <div class="changelog">
         <div class="log-entry reveal-up">
@@ -248,10 +321,13 @@
         <h2>Let's build something <span class="accent">reliable</span>.</h2>
         <p>Open to Laravel, PHP and full-stack roles or freelance builds. Usually replies within a day.</p>
         <div class="contact-links">
-          <a href="mailto:atulbist21@gmail.com">✉ atulbist21@gmail.com</a>
-          <a href="tel:+917987527656">☎ +91 79875 27656</a>
-          <a href="https://www.linkedin.com/in/atul-patel-659b07207" target="_blank">in/atul-patel</a>
-          <a href="https://github.com/atul11997" target="_blank">github.com/atul11997</a>
+          <a href="mailto:atulbist21@gmail.com"><i class="fa-solid fa-envelope"></i> atulbist21@gmail.com</a>
+          <a href="tel:+917987527656"><i class="fa-solid fa-phone"></i> +91 79875 27656</a>
+          <a href="https://www.linkedin.com/in/atul-patel-659b07207" target="_blank"><i
+              class="fa-brands fa-linkedin-in"></i>
+            in/atul-patel</a>
+          <a href="https://github.com/atul11997" target="_blank"><i class="fa-brands fa-github"></i>
+            github.com/atul11997</a>
         </div>
       </div>
     </div>
@@ -331,6 +407,69 @@
     });
 
     reveals.forEach(element => observer.observe(element));
+
+
+    (function () {
+      const track = document.getElementById('wicbTrack');
+      const viewport = document.getElementById('wicbViewport');
+      if (!track || !viewport) return;
+
+      // Take the cards already written in HTML and clone them once,
+      // appending the clones right after — this gives the seamless loop
+      // without hardcoding any content in JS.
+      const originalCards = Array.from(track.children);
+      const itemCount = originalCards.length;
+      originalCards.forEach(card => {
+        track.appendChild(card.cloneNode(true));
+      });
+
+      let cardWidth = 0;
+      let gap = 20;
+      let setWidth = 0; // width of one full set (for loop reset)
+
+      function measure() {
+        const firstCard = track.children[0];
+        const style = getComputedStyle(track);
+        gap = parseFloat(style.columnGap || style.gap) || 20;
+        cardWidth = firstCard.getBoundingClientRect().width;
+        setWidth = (cardWidth + gap) * itemCount;
+      }
+
+      let pos = 0;          // current translateX value (negative = moved left)
+      let speed = 0.5;       // px per frame
+      let paused = false;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function tick() {
+        if (!paused && !prefersReduced) {
+          pos -= speed;
+          if (Math.abs(pos) >= setWidth) {
+            pos += setWidth;
+          }
+        }
+        track.style.transform = `translateX(${pos}px)`;
+        requestAnimationFrame(tick);
+      }
+
+      function nudge(direction) {
+        // direction: -1 = prev (move right), 1 = next (move left)
+        pos -= direction * (cardWidth + gap);
+        if (pos > 0) pos -= setWidth;
+        if (Math.abs(pos) >= setWidth) pos += setWidth;
+      }
+
+      viewport.addEventListener('mouseenter', () => { paused = true; });
+      viewport.addEventListener('mouseleave', () => { paused = false; });
+
+      const nextBtn = document.getElementById('wicbNext');
+      const prevBtn = document.getElementById('wicbPrev');
+      if (nextBtn) nextBtn.addEventListener('click', () => nudge(1));
+      if (prevBtn) prevBtn.addEventListener('click', () => nudge(-1));
+
+      window.addEventListener('resize', measure);
+      measure();
+      requestAnimationFrame(tick);
+    })();
   </script>
 
 </body>
